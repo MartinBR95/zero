@@ -1,0 +1,26 @@
+#!/bin/bash
+apt-get update
+apt-get -y install tmux
+
+echo "# remap prefix from 'C-b' to 'C-a'"     > /home/$SUDO_USER/.tmux.conf
+echo "unbind C-b"                             >> /home/$SUDO_USER/.tmux.conf
+echo "set-option -g prefix M-Space"           >> /home/$SUDO_USER/.tmux.conf
+echo "bind-key M-Space send-prefix"           >> /home/$SUDO_USER/.tmux.conf
+echo "set -g default-terminal \"screen-256color\"" >> /home/$SUDO_USER/.tmux.conf
+
+apt-get -y install vim
+mkdir /home/$SUDO_USER/.vim 2>/dev/null
+mkdir /home/$SUDO_USER/.vim/colors 2>/dev/null
+wget -O /home/$SUDO_USER/.vim/colors/gotham256.vim https://raw.githubusercontent.com/whatyouhide/vim-gotham/master/colors/gotham256.vim
+
+echo "inoremap fj <esc>"      > /home/$SUDO_USER/.vimrc
+echo "inoremap jf <esc>"      >> /home/$SUDO_USER/.vimrc
+echo "colorscheme gotham256"  >> /home/$SUDO_USER/.vimrc
+echo "set number"             >> /home/$SUDO_USER/.vimrc
+echo "set ignorecase"         >> /home/$SUDO_USER/.vimrc
+echo "set cursorline"         >> /home/$SUDO_USER/.vimrc
+echo "set hlsearch"           >> /home/$SUDO_USER/.vimrc
+echo "set incsearch"          >> /home/$SUDO_USER/.vimrc
+
+apt-get -y install ranger
+apt-get upgrade
