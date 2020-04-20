@@ -1,0 +1,46 @@
+#!/bin/bash
+apt-get update
+apt-get -y install tmux
+
+echo "# remap prefix from 'C-b' to 'C-a'"     > /home/$SUDO_USER/.tmux.conf
+echo "unbind C-b"                             >> /home/$SUDO_USER/.tmux.conf
+echo "set-option -g prefix M-Space"           >> /home/$SUDO_USER/.tmux.conf
+echo "bind-key M-Space send-prefix"           >> /home/$SUDO_USER/.tmux.conf
+echo "set -g default-terminal \"screen-256color\"" >> /home/$SUDO_USER/.tmux.conf
+
+apt-get -y install neovim
+#Installing Plug for Nvim
+mkdir -p /home/$SUDO_USER/.local/share/nvim/site/autoload
+curl -fLo /home/$SUDO_USER/local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+#Plug plugins
+	echo "call plug#begin('/home/$SUDO_USER/local/share/nvim/plugged')" > /home/$SUDO_USER/.config/nvim/init.vim
+
+	echo "Plug 'whatyouhide/vim-gotham'" >> /home/$SUDO_USER/.config/nvim/init.vim
+	echo "Plug 'vimwiki/vimwiki'" >> /home/$SUDO_USER/.config/nvim/init.vim
+	echo "Plug 'preservim/nerdtree'"     >> /home/$SUDO_USER/.config/nvim/init.vim
+	echo "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }" >> /home/$SUDO_USER/.config/nvim/init.vim
+	echo "let g:deoplete#enable_at_startup = 1" >> /home/$SUDO_USER/.config/nvim/init.vim
+
+	echo "call plug#end()" >> /home/$SUDO_USER/.config/nvim/init.vim
+nvim +'PlugInstall --sync' +qa
+#NVim User config
+mkdir -p /home/$SUDO_USER/.config/nvim/
+echo "set termguicolors"         >> /home/$SUDO_USER/.config/nvim/init.vim
+echo "set nocompatible"          >> /home/$SUDO_USER/.config/nvim/init.vim
+echo "filetype plugin on"        >> /home/$SUDO_USER/.config/nvim/init.vim
+echo "syntax on"                 >> /home/$SUDO_USER/.config/nvim/init.vim
+echo "inoremap fj <esc>"         >> /home/$SUDO_USER/.config/nvim/init.vim
+echo "inoremap jf <esc>"         >> /home/$SUDO_USER/.config/nvim/init.vim
+echo "colorscheme gotham256"     >> /home/$SUDO_USER/.config/nvim/init.vim
+echo "set number"                >> /home/$SUDO_USER/.config/nvim/init.vim
+echo "set ignorecase"            >> /home/$SUDO_USER/.config/nvim/init.vim
+echo "set cursorline"            >> /home/$SUDO_USER/.config/nvim/init.vim
+echo "set hlsearch"              >> /home/$SUDO_USER/.config/nvim/init.vim
+echo "set incsearch"             >> /home/$SUDO_USER/.config/nvim/init.vim
+echo "set relativenumber"        >> /home/$SUDO_USER/.config/nvim/init.vim
+echo "set nowrap"                >> /home/$SUDO_USER/.config/nvim/init.vim
+echo "set shiftwidth=4"          >> /home/$SUDO_USER/.config/nvim/init.vim
+echo "set splitbelow splitright" >> /home/$SUDO_USER/.config/nvim/init.vim
+
+apt-get -y install ranger
+apt-get upgrade
