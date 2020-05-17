@@ -9,8 +9,7 @@ echo "bind-key M-Space send-prefix"           >> /home/$SUDO_USER/.tmux.conf
 echo "set -g default-terminal \"screen-256color\"" >> /home/$SUDO_USER/.tmux.conf
 
 apt-get -y install vim
-mkdir /home/$SUDO_USER/.vim 2>/dev/null
-mkdir /home/$SUDO_USER/.vim/colors 2>/dev/null
+mkdir -p /home/$SUDO_USER/.vim/colors 2>/dev/null
 wget -O /home/$SUDO_USER/.vim/colors/gotham256.vim https://raw.githubusercontent.com/whatyouhide/vim-gotham/master/colors/gotham256.vim
 
 echo "inoremap fj <esc>"      > /home/$SUDO_USER/.vimrc
@@ -21,6 +20,16 @@ echo "set ignorecase"         >> /home/$SUDO_USER/.vimrc
 echo "set cursorline"         >> /home/$SUDO_USER/.vimrc
 echo "set hlsearch"           >> /home/$SUDO_USER/.vimrc
 echo "set incsearch"          >> /home/$SUDO_USER/.vimrc
+echo "set splitbelow splitright" >> /home/$SUDO_USER/.vimrc
+#mkdir -p /home/$SUDO_USER/.vim/autoload
+curl -fLo /home/$SUDO_USER/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+mkdir -p /home/$SUDO_USER/.vim/plugged
+echo "call plug#begin('/home/$SUDO_USER/.vim/plugged')" >> /home/$SUDO_USER/.vimrc
+
+Plug 'preservim/nerdtree'
+
+echo "call plug#end()" >> /home/$SUDO_USER/.vimrc
+
 
 apt-get -y install ranger
 apt-get upgrade

@@ -1,4 +1,4 @@
-call plug#begin('/home/eng/local/share/nvim/plugged')
+call plug#begin('/home/zero/local/share/nvim/plugged')
 Plug 'whatyouhide/vim-gotham'
 Plug 'vimwiki/vimwiki'
 Plug 'preservim/nerdtree'
@@ -27,3 +27,17 @@ set scrolloff=3
 set sidescrolloff=3
 set spell
 set sidescroll=0
+set smartcase
+" Zoom / Restore window.
+function! s:ZoomToggle() abort
+    if exists('t:zoomed') && t:zoomed
+        execute t:zoom_winrestcmd
+        let t:zoomed = 0
+    else
+        let t:zoom_winrestcmd = winrestcmd()
+        resize
+        vertical resize
+        let t:zoomed = 1
+    endif
+endfunction
+command! ZoomToggle call s:ZoomToggle()
