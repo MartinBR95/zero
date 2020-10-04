@@ -28,12 +28,15 @@
         "defaults":
         {
             // Put settings here that you want to apply to all profiles.
-			"fontFace":"Cascadia Code PL",
+			"fontFace":"Cascadia Code",
 			"cursorShape":"emptyBox",
 			"colorScheme":"Gruvbox-Material  Hard  Dark",
-			"useAcrylic":true,
-			"acrylicOpacity":0.7,
-			"scrollbarState":"hidden"
+			"useAcrylic":false,
+			"acrylicOpacity":0.9,
+			"scrollbarState":"hidden",
+			"backgroundImage": "C:/Wallpaper5.gif",
+			"backgroundImageOpacity":0.2
+			//"backgroundImageStretchMode":"fill"
         },
         "list":
         [
